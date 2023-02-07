@@ -12,13 +12,14 @@ export const contato = async (req: Request, res: Response) => {
             }
         });
     // Passo 2 : Configurar a mensagem
+    const { from, subject, email } = req.body
     let message = {
-        from: 'Anderson Santana <anderson@gmail.com>',
+        from: 'nao-responda@gmail.com',
         to: 'suporte@gmail.com',
-        // replyTo: '',
-        subject: 'Assunto do email',
-        html: 'Opa <strong>Anderson</strong> como está?',
-        text: 'Opa Anderson, como está'
+        replyTo: from,
+        subject: subject,
+        html: email,
+        text: email
     }
     // Passo 3: Enviar a mensagem
     let info = await transport.sendMail(message)
